@@ -1,0 +1,142 @@
+/* FOLHAS DE ESTILO DO TEMA DO APP */
+
+/* CSS reset */
+* {
+    box-sizing: border-box;
+}
+*:focus {
+    outline: none;
+}
+html, body {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    font-family: sans-serif; /* Fonte padrÃ£o do app */
+    font-size: 16px; /* Tamanho da fonte nÃ£o menor 12px */
+}
+body {
+    background: url('../img/backrground03.jpg') fixed; /* Imagem ou cor de fundo */ 
+    color: #444; /* Cor dos textos */
+}
+a {
+    color: rgb(70, 130, 180); /* Cor padrÃ£o dos links */
+    text-decoration: none;
+}
+a:hover {
+    color: rgb(255, 69, 0); /* Cor dos links com 'hover' */
+}
+
+/* Toda a pÃ¡gina */
+#wrap {
+    background: rgba(255,255,255,.7);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Estilos do header */
+header {
+    display: flex;
+    justify-content: space-between;
+    background: #00465c; /* Cor do fundo do cabeÃ§alho */
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+header h1 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #fff; /* Cor do tÃ­tulo do cabeÃ§alho */
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+header h1 i {
+    font-size: 1.5rem;
+    color: orangered;
+    text-shadow: -1px -1px #fff, -1px 1px #fff, 1px -1px #fff, 1px 1px #fff;
+    margin-right: .5rem;
+}
+header a {
+    display: block;
+    height: 4rem;
+    width: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #c7e2eb; /* Cor dos links do cabeÃ§alho */
+    font-size: 1.5rem;
+    transition: .5s;
+}
+header a:hover {
+    color: #c7e2eb; /* Cor dos links do cabeÃ§alho em hover */
+}
+
+/* Anima botÃ£o */
+.rotateMenuBtn {
+    transform: rotate(-270deg);
+}
+
+/* Meu principal */
+nav {
+    display: flex;
+    flex-direction: column;
+    background: #006280;
+    position: fixed;
+    z-index: 100;
+    top: 4rem;
+    left: -468px;
+}
+
+/* AnimaÃ§Ã£o do menu principal */
+.slideOn {
+    animation: slideOn 0.5s forwards;
+}
+.slideOff {
+    left: 0;
+    animation: slideOff 1s forwards;
+}
+@keyframes slideOn {
+    100% { left: 0; }
+}
+@keyframes slideOff {
+    100% { left: -468px; }
+}
+
+nav a {
+    color: #ddd;
+    padding: .5rem 1.5rem .5rem 1rem;
+}
+nav a:hover {
+    background: #ddd;
+    color: #006280;
+}
+nav hr {
+    border: 0;
+    margin: 0;
+    border-bottom: 1px dotted #ddd;
+}
+
+/* Modais */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 90;
+    display: none;
+}
+
+/* conteÃºdo da pÃ¡gina */
+main {
+    padding-top: 4rem;
+    flex-grow: 1;
+}
