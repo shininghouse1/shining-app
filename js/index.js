@@ -1,60 +1,82 @@
 /* SCRIPTS DO TEMA */
 
-console.log('oi')
-
+/* Constructor - Comente ou remova as linhas 'console.log' quando o App estiver pronto! */
 var app = {
-    // inicializaÃ§Ã£o do jQuery e Cordova
+    // Inicialização do jQuery, Firebase e Cordova (em breve)
     start: function(){
-        $(document).ready(this.config);
+        console.log('1) Inicializando App...');
+
+        $(document).ready(this.config); // Inicializando jQuery
     },
 
-    // configura o app (firebase ou local)
+    // Configura o app
     config: function(){
-        console.log('configurando o app');
+        console.log('2) Configurando App...');
+
+        // Configuração inicial local do App
+        var config = conf.getAll(); // Obtém configurações
+        if(!config) config = conf.reset(); // Se não existem, inicia com default
+            
+        // Configura jQuery AJAX CrossDomain para rotas no Android
+		$.ajaxPrefilter( 'text html json script xml', function(options){
+            options.crossDomain = true;
+        });
+
+        // Inicializa Firebase
+        conf.fireStart();
+
+        // Executa App
         app.run();
     },
 
-    // executa o app que estÃ¡ na funÃ§Ã£o 'runApp()'
+    // Prepara e executa o app que está na função 'runApp()'
     run: function(){
-        console.log("executando o app");
+        console.log('3) Executando o App...');
+
+        // Aplicar tema pré-configurado
+        $('main').attr('class', conf.get('tema'));
+
+        // Monitorando usuário logado
+        userStatus();
+
+        // Executa tratamento de eventos
         runApp();
     }
 }
 
-function toggleMenu(){
-    if( $('nav').attr('class') == 'slideOn' ){
-        $('nav').attr('class', function(){
-            $('#menuModal').fadeOut('fast');
-
-            // Efeito do botÃ£o de menu
-            $('#menu').removeClass('rotateMenuBtn'); // usando elipsis
-            // $('#menu').html('<i class="fas fa-fw fa-bars"></i>'); // usando bars
-
-            return 'slideOff';
-        });
-    } else {
-        $('nav').attr('class', function(){
-            $('#menuModal').fadeIn('fast');
-            
-            // Efeito do botÃ£o de menu
-            $('#menu').addClass('rotateMenuBtn'); // usando elipsis
-            // $('#menu').html('<i class="fas fa-fw fa-times"></i>'); // usando bars
-            
-            return 'slideOn';
-        });
-    }
-}
-
-// Aplicativo (camada de controle)
+// Tratamento de eventos do App
 function runApp(){
-    console.log('meu app');
 
-    // monotorando botÃ£o do menu principal
+    console.log($FB.db);
+
+    // Carregar html/home.html
+    $.get('html/home.html', function(htmlHome){
+    // $.get('html/config.html', function(htmlHome){ /*************************** REMOVER ********************************/
+        $('main').html(htmlHome);
+    });
+
+    // Ocultar Splash Screen 500 milissegundos após iniciar App
+    // $('#splashScreen').hide(0); /*************************** REMOVER ********************************/
+    setTimeout(function(){
+        $('#splashScreen').fadeOut('slow'); // Oculta com fade
+    }, 500);
+
+    // Monitorando click/touch no botão do menu principal
     $(document).on('click', '#menu', toggleMenu);
 
+    // Monitorando click/touch no 'menuModal'
+    $(document).on('click', '#menuModal', menuOff);
+
+    // Monitorando links para virar rotas
+    $(document).on('click', 'a', routing);
+
+    // Monitorando botões logout
+    $(document).on('click', 'a[href="#logout"]', logoutUser);
+
+    // Monitorando botões login
+    $(document).on('click', 'a[href="#login"]', loginUser);
 
 }
 
-
-
+// Tudo pronto? Vamos 'rodar' o App
 app.start();
