@@ -115,12 +115,12 @@ function userLogged(){
 
 // Entrada / Saída de usuário
 function userInOut(){
-    if(conf.get('user').email !== ''){
-        console.log('1) vou sair');
-        logoutUser();
-    } else {
+    if(conf.get('user').email === ''){
         console.log('2) Vou entrar');
         loginUser();
+    } else {
+        console.log('1) vou sair');
+        logoutUser();
     }
     userLogged();
 }

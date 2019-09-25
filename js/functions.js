@@ -1,75 +1,54 @@
-/* FUNÃ‡Ã•ES DO TEMA E DE USO GERAL DO APP */
+/* FUNÇÕES DO TEMA E DE USO GERAL DO APP */
  
 var $FB = {}; // Superglobal do Firebase
 
-// Construtor de configuraÃ§Ã£o do App
+// Construtor de configuração do App
 var conf = {
 
-    // ConfiguraÃ§Ãµes locais iniciais do App
-    initial : {
-        tema : 'light',
-        user : {
-            name : '',
-            email : '',
-            photo : ''
-        }
-    },
+    // Chave do armazenamento que contém a configuração local do App
+    name : localStorageKeyName,
 
-    // ConfiguraÃ§Ã£o da conexÃ£o com o Google Firebase
-    fireConfig : {
-        apiKey: "AIzaSyCqpWi7y5mZrLF51riDU6IPGwEZsgzl5uQ",
-        authDomain: "shininghouse-8d3d5.firebaseapp.com",
-        databaseURL: "https://shininghouse-8d3d5.firebaseio.com",
-        projectId: "shininghouse-8d3d5",
-        storageBucket: "shininghouse-8d3d5.appspot.com",
-        messagingSenderId: "735467682715",
-        appId: "1:735467682715:web:0e4fd7e3299b27790dbf3e"
-    },
-
-    // Chave do armazenamento que contÃ©m a configuraÃ§Ã£o local do App
-    name : 'config',
-
-    // ConexÃ£o com armazenamento local
+    // Conexão com armazenamento local
     conn : function(){
         return window.localStorage
     },
 
-    // ObtÃ©m configuraÃ§Ãµes locais do App
+    // Obtém configurações locais do App
     getAll : function(){
         return JSON.parse(conf.conn().getItem(this.name)); // Transforma JSON em objeto
     },
 
-    // ObtÃ©m uma configuraÃ§Ã£o local do App
+    // Obtém uma configuração local do App
     get : function(key){
         return this.getAll()[key];
     },
 
-    // Altera uma configuraÃ§Ã£o local do App
+    // Altera uma configuração local do App
     set : function(key, value){
         config = this.getAll();
         config[key] = value;
         this.conn().setItem(this.name, JSON.stringify(config));
     },
 
-    // Retorna para as configuraÃ§Ãµes iniciais
+    // Retorna para as configurações iniciais
     reset : function(){
         this.conn().removeItem(this.name);
-        this.conn().setItem(this.name, JSON.stringify(this.initial));
-        return this.initial;
+        this.conn().setItem(this.name, JSON.stringify(initialConfig));
+        return initialConfig;
     },
 
     // Google Firebase
     fireStart : function(){
-        firebase.initializeApp(this.fireConfig); // Inicializa firebase
+        firebase.initializeApp(firebaseConfig); // Inicializa firebase
         $FB.db = firebase.firestore(); // Inicializa Firestore
     }
 }
 
 // 'Control' do menu principal
 function toggleMenu(){
-    if($('nav').attr('class') == 'slideOn'){ // Se o menu estÃ¡ aparecendo...
+    if($('nav').attr('class') == 'slideOn'){ // Se o menu está aparecendo...
         menuOff(); // Ocuta
-    } else { // Se o menu estÃ¡ oculto...
+    } else { // Se o menu está oculto...
         menuOn(); // Mostra
     }
 }
@@ -78,7 +57,7 @@ function toggleMenu(){
 function menuOn(){
     $('nav').attr('class', function(){ // Altera a classe do menu
         $('#menuModal').fadeIn('fast'); // Mostra o fundo do menu com fade
-        $('#menu').addClass('rotateMenuBtn'); // Adiciona classe que rotaciona o botÃ£o
+        $('#menu').addClass('rotateMenuBtn'); // Adiciona classe que rotaciona o botão
         return 'slideOn'; // Aplica classe que desloca o menu para a direita, exibindo-o
     });
 }
@@ -87,12 +66,12 @@ function menuOn(){
 function menuOff(){
     $('nav').attr('class', function(){ // Altera a classe do menu
         $('#menuModal').fadeOut('fast'); // Esconde fundo do menu com fade
-        $('#menu').removeClass('rotateMenuBtn'); // Remove classe que rotaciona o botÃ£o
+        $('#menu').removeClass('rotateMenuBtn'); // Remove classe que rotaciona o botão
         return 'slideOff'; // Aplica classe que desloca o menu para a esquerda, escondendo
     });
 }
 
-// Identifica usuÃ¡rio logado no menu e na barra superior
+// Identifica usuário logado no menu e na barra superior
 function userStatus(){
     var user = conf.get('user');
     if(user.email !== ''){
@@ -113,11 +92,11 @@ function userStatus(){
     }
 }
 
-// Faz login de um usuÃ¡rio
+// Faz login de um usuário
 function loginUser(){
     /******************* REMOVER * LOGIN * FAKE **********************/
     var user = {
-        name : 'Joca da Silva Souza de Castro Siriliano QueirÃ³z Javaijunto',
+        name : 'Joca da Silva Souza de Castro Siriliano Queiróz Javaijunto',
         email : 'joca@silva.com',
         photo : 'img/jocasilva.jpg'
     }
@@ -126,7 +105,7 @@ function loginUser(){
     menuOff();
 }
 
-// Faz logout de um usuÃ¡rio
+// Faz logout de um usuário
 function logoutUser(){
     /******************* REMOVER * LOGOUT * FAKE **********************/
     var user = {
@@ -139,7 +118,7 @@ function logoutUser(){
     menuOff();
 }
 
-// ObtÃ©m a data formatada em YYYY-MM-DD HH:II:SS
+// Obtém a data formatada em YYYY-MM-DD HH:II:SS
 function agoraDb(myDate = ''){
     if(myDate == '') n = new Date()
     else n = new Date(myDate);
@@ -157,17 +136,17 @@ function agoraDb(myDate = ''){
     return `${y}-${m}-${d} ${h}:${i}:${s}`;
 }
 
-// FunÃ§Ã£o padrÃ£o para 'sanitizar' os valores dos campos
+// Função padrão para 'sanitizar' os valores dos campos
 function sanitiza(texto) { 
-	// Limpa espaÃ§os antes e depois da string
+	// Limpa espaços antes e depois da string
 	texto = texto.trim();
 
-	// Limpa espaÃ§os duplicados dentro da string
+	// Limpa espaços duplicados dentro da string
 	while(texto.indexOf('  ') != -1) { 
 		texto = texto.replace('  ', ' ');
 	}
 
-	// Altera caracteres indesejados(usando expressÃ£o regular) 
+	// Altera caracteres indesejados(usando expressão regular) 
 	texto = texto.replace(/&/g, '&amp;'); /* Caractere '&' */
 	texto = texto.replace(/</g, '&lt;'); /* Caractere '<' */
 	texto = texto.replace(/>/g, '&gt;'); /* Caractere '>' */
@@ -177,15 +156,15 @@ function sanitiza(texto) {
 	return texto;
 }
 
-// FunÃ§Ã£o para validar somente letras (usando expressÃ£o regular e match())
+// Função para validar somente letras (usando expressão regular e match())
 function soLetras(texto) { 
-	if(texto.match(/[^a-zÃ -Ãº ]/gi)) { 
+	if(texto.match(/[^a-zà-ú ]/gi)) { 
 		return false;
 	}
 	return true;
 }
 
-// FunÃ§Ã£o para validar um endereÃ§o de e-mail(usando expressÃ£o regular e match())
+// Função para validar um endereço de e-mail(usando expressão regular e match())
 function isMail(texto) { 
 	if(texto.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]{2,}$/)) {
 		return true;

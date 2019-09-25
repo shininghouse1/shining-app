@@ -1,5 +1,5 @@
 /* SCRIPTS DO TEMA */
-
+ 
 /* Constructor - Comente ou remova as linhas 'console.log' quando o App estiver pronto! */
 var app = {
     // Inicialização do jQuery, Firebase e Cordova (em breve)
@@ -47,11 +47,9 @@ var app = {
 // Tratamento de eventos do App
 function runApp(){
 
-    console.log($FB.db);
-
     // Carregar html/home.html
+    //$.get('html/contatos.html', function(htmlHome){ /*************************** REMOVER ********************************/
     $.get('html/home.html', function(htmlHome){
-    // $.get('html/config.html', function(htmlHome){ /*************************** REMOVER ********************************/
         $('main').html(htmlHome);
     });
 
