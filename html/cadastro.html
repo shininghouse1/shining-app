@@ -66,6 +66,28 @@
         <input type="text" name="nome" id="nome" placeholder="Seu nome completo.">
     </p>
     <p>
+        <label for="titulo">Título do Serviço</label>
+        <input type="text" name="titulo" id="titulo" placeholder="Digite o nome do serviço prestado">
+    </p>
+    <p>
+        <label for="tel">Telefone</label>
+        <input type="text" name="tel" id="tel" placeholder="Digite o número de telefone para contato">
+    </p>
+    <div class="text-center" id="tipo" for="tipo">
+            <label>Doméstico
+                <input type="radio" name="tipo" value="Doméstico">
+            </label>
+            &nbsp; &nbsp;
+            <label>Empresarial
+                <input type="radio" name="tipo" value="Empresarial">
+            </label>
+        </div>
+    
+    <p>
+        <label for="estado">Estado</label>
+        <input type="text" name="estado" id="estado" placeholder="Digite o Estado. Ex: Rio de Janeiro">
+    </p>
+    <p>
         <label for="email">E-mail de contato:</label>
         <input type="text" name="email" id="email" placeholder="Seu e-mail principal.">
     </p>
@@ -74,13 +96,14 @@
         <input type="text" name="desc" id="desc" placeholder="Descreva o seu serviço.">
     </p>
     <p>
-        <label for="tel">Telefone:</label>
-        <input type="text" name="tel" id="tel" placeholder="Digite o número de telefone para contato">
+        <label for="upload1">Selecione uma foto:</label>
+        <img src="" id="upload" />
+        <input type="file" id="upload1" name="upload1" class="upload1" accept="image/*" onChange="readURL(this);" />
+            
     </p>
-    <p>
-        <label for="tipo">Tipo de serviço:</label>
-        <input type="text" name="tipo" id="tipo" placeholder="Empresarial ou doméstico?">
-    </p>
+
+
+
 
     <p>
         <button class="btnDefault" type="submit" name="enviar" id="enviar">Enviar</button>
@@ -90,6 +113,7 @@
     </div>
     
     <script>
+    $("input [name='tipo'] checked").val()
     // Oculta barra superior
     $('header').slideUp('fast');
     
@@ -120,7 +144,10 @@
         var formEmail = sanitiza($('#email').val());
         var formDesc = sanitiza($('#desc').val());
         var formTel = sanitiza($('#tel').val());
-        var formTipo = sanitiza($('#tipo').val());
+        var formTipo = $("input [name='tipo'] checked").val();
+        var formTitulo = sanitiza($('#titulo').val());
+        var formEstado = sanitiza($('#estado').val());
+        var formUpload1 = sanitiza($('#upload1').val());
     
         // Atualizando campos com valores sanitizados
         $('#nome').val(formNome);
@@ -128,6 +155,10 @@
         $('#desc').val(formDesc);
         $('#tel').val(formTel);
         $('#tipo').val(formTipo);
+        $('#titulo').val(formTitulo);
+        $('#estado').val(formEstado);
+        $('#upload1').val(formUpload1);
+    
     
         // Validando nome
         if (formNome.length < 3) {
@@ -166,6 +197,9 @@
                 desc: formDesc,
                 telefone: formTel,
                 tipo: formTipo,
+                titulo: formTitulo,
+                estado: formEstado,
+                upload1: formUpload1,
                 status: 'recebido'
             })
             .then(function(docRef) { // Se gravou no Firebase
@@ -214,5 +248,18 @@
     function closeBox(){
         $('#msgErroBox').hide('fast');
     }
-    
+    function readURL(input) {
+	if (input.files && input.files[0]) {
+		var reader = new FileReader();
+
+		reader.onload = function (e) {
+		$('#foto')
+			.attr('src', e.target.result)
+			.width(100)
+			.height(100);
+		};
+		reader.readAsDataURL(input.files[0]);
+	}
+}
+
     </script>

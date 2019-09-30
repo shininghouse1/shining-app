@@ -2,27 +2,26 @@
 
 /* Variáveis de controle do tema  */
 :root {
-    --font-face-default: sans-serif; /* Fonte padrão do app */
+    --font-face-default:'Karma', serif; /* Fonte padrão do app */
     --font-size-default: 16px; /* Tamanho da fonte não menor 12px */
     --font-color: #444; /* Cor dos textos */
     --body-bg: url('../img/backrground03.jpg') fixed #ddd; /* Imagem ou cor de fundo */
     --link-color: rgb(70, 130, 180); /* Cor padrão dos links */
     --link-color-hover: rgb(255, 69, 0); /* Cor dos links com 'hover' */
-    --header-bg: #286DA8; /* Cor do fundo do cabeçalho */
+    --header-bg:  #286DA8;  /* Cor do fundo do cabeçalho */
     --header-font-color: #fff; /* Cor do título do cabeçalho */
     --header-link-font-color: #c7e2eb; /* Cor dos links do cabeçalho */
-    --menu-bg-color: #026397; /* cor de fundo do menu */
-    --menu-font-color: #eee; /* Cor do texto do menu */
+    --menu-bg-color:  #4591d3; /* cor de fundo do menu */
+    --menu-font-color: #fff; /* Cor do texto do menu */
     --menu-bg-color-hover: #ddd; /* Cor do fundo do menu em hover/click/touch */
     --menu-font-color-hover: #006280; /* Cor do texto do menu em hover/click/touch */
     --menu-hr: 1px dotted #ddd; /* Estilo de linha do separador do menu */
     --main-bg: rgba(255, 255, 255, .7); /* Cor de fundo do conteúdo, com transparência */
- 
 
     /* Splash Screen */
     --splash-color: #000;
     --splash-logo-bg-color: #fff;
-    --splash-logo-color: #026397;
+    --splash-logo-color: #0066ff;
 
     /* Logo com font Awesome */
     --logo-border: -1px -1px #fff, -1px 1px #fff, 1px -1px #fff, 1px 1px #fff; /* Borda do logo */
@@ -297,4 +296,7 @@ main > h2 a, main > h2 a:hover {
 }
 #headerUser {
     visibility: hidden;
+}
+.priva {
+    text-align: justify;
 }

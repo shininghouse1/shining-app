@@ -9,7 +9,7 @@ var firebaseConfig = {
     storageBucket: "shininghouse-8d3d5.appspot.com",
     messagingSenderId: "735467682715",
     appId: "1:735467682715:web:0e4fd7e3299b27790dbf3e"
-}
+  }
 
 // Nome da 'key' que armasena as configurações locais
 var localStorageKeyName = 'config';
