@@ -1,265 +1,260 @@
 <style>
-    .pageWrap label {
-        display: block;
-        padding: 0 1rem .2rem .5rem;
-    }
-    .pageWrap input, .pageWrap textarea, .pageWrap button {
-        font-family: inherit;
-        font-size: inherit;
-        border: 1px solid #ccc;
-        padding: .3rem .5rem;
-        width: 100%;
-        border-radius: .3rem;
-    }
-    .pageWrap textarea {
-        height: 5rem;
-    }
-    .pageWrap button {
-        border: 0;
-    }
-    #msgErroBox, #msgFb {
-        display: none;
-    }
-    #msgErro {
-        background: #ffff00;
-        color: darkred;
-        font-size: 80%;
-        display: table;
-        margin: auto;
-        margin-top: 1rem;
-        padding: .5rem;
-        border-radius: .3rem;
-    }
-    #msgErro > span {
-        display: block;
-        float: right;
-        cursor: pointer;
-        border: 1px solid grey;
-        border-radius: .2rem;
-        background: #fff;
-    }
-    #msgErro > span:hover {
-        background: red;
-        color: #fff;
-    }
-    #msgErro > h3 {
-        margin: 0;
-    }
-    </style>
-    
-    <h2>
-        <a href="#home"><i class="fas fa-fw fa-arrow-left"></i></a>
-        <span>Cadastre o seu anúncio aqui.</span>    
-    </h2>
-    <div class="pageWrap">
-    
-    <div id="msgFb"></div>
-    
-    <form action="#servicos" method="post" id="servicos">
-        Faça a divulgação dos seus serviços aqui! Para isso, preencha o formulário abaixo.
-    <div id="msgErroBox">
-        <div id="msgErro"></div>
-    </div>
-    
-    <p>
-        <label for="nome">Nome</label>
-        <input type="text" name="nome" id="nome" placeholder="Seu nome completo.">
-    </p>
-    <p>
-        <label for="titulo">Título do Serviço</label>
-        <input type="text" name="titulo" id="titulo" placeholder="Digite o nome do serviço prestado">
-    </p>
-    <p>
-        <label for="tel">Telefone</label>
-        <input type="text" name="tel" id="tel" placeholder="Digite o número de telefone para contato">
-    </p>
-    <div class="text-center" id="tipo" for="tipo">
-            <label>Doméstico
-                <input type="radio" name="tipo" value="Doméstico">
-            </label>
-            &nbsp; &nbsp;
-            <label>Empresarial
-                <input type="radio" name="tipo" value="Empresarial">
-            </label>
-        </div>
-    
-    <p>
-        <label for="estado">Estado</label>
-        <input type="text" name="estado" id="estado" placeholder="Digite o Estado. Ex: Rio de Janeiro">
-    </p>
-    <p>
-        <label for="email">E-mail de contato:</label>
-        <input type="text" name="email" id="email" placeholder="Seu e-mail principal.">
-    </p>
-    <p>
-        <label for="desc">Descrição do serviço:</label>
-        <input type="text" name="desc" id="desc" placeholder="Descreva o seu serviço.">
-    </p>
-    <p>
-        <label for="upload1">Selecione uma foto:</label>
-        <img src="" id="upload" />
-        <input type="file" id="upload1" name="upload1" class="upload1" accept="image/*" onChange="readURL(this);" />
-            
-    </p>
+.pageWrap label {
+    display: block;
+    padding: 0 1rem .2rem .5rem;
+}
+.pageWrap input, .pageWrap textarea, .pageWrap button {
+    font-family: inherit;
+    font-size: inherit;
+    border: 1px solid #ccc;
+    padding: .3rem .5rem;
+    width: 100%;
+    border-radius: .3rem;
+}
+.pageWrap textarea {
+    height: 5rem;
+}
+.pageWrap button {
+    border: 0;
+}
+#msgErroBox, #msgFb {
+    display: none;
+}
+#msgErro {
+    background: #ffff00;
+    color: darkred;
+    font-size: 80%;
+    display: table;
+    margin: auto;
+    margin-top: 1rem;
+    padding: .5rem;
+    border-radius: .3rem;
+}
+#msgErro > span {
+    display: block;
+    float: right;
+    cursor: pointer;
+    border: 1px solid grey;
+    border-radius: .2rem;
+    background: #fff;
+}
+#msgErro > span:hover {
+    background: red;
+    color: #fff;
+}
+#msgErro > h3 {
+    margin: 0;
+}
+</style>
 
+<h2>
+    <a href="#home"><i class="fas fa-fw fa-arrow-left"></i></a>
+    <span>Cadastre o seu anúncio aqui.</span>    
+</h2>
+<div class="pageWrap">
 
+<div id="msgFb"></div>
 
+<form action="#servicos" method="post" id="servicos" target="_none">
+    Faça a divulgação dos seus serviços aqui! Para isso, preencha o formulário abaixo.
+<div id="msgErroBox">
+    <div id="msgErro"></div>
+</div>
 
-    <p>
-        <button class="btnDefault" type="submit" name="enviar" id="enviar">Enviar</button>
+<p>
+    <label for="nome">Nome</label>
+    <input type="text" name="nome" id="nome" placeholder="Seu nome completo.">
+</p>
+<p>
+    <label for="titulo">Título do Serviço</label>
+    <input type="text" name="titulo" id="titulo" placeholder="Digite o nome do serviço prestado">
+</p>
+<p>
+    <label for="tel">Telefone</label>
+    <input type="text" name="tel" id="tel" placeholder="Digite o número de telefone para contato">
+</p>
+<p>
+    <label for="tipo">Selecione o tipo de serviço prestado</label>
+    <select name="categorias" id="categorias">
+        <option value="Doméstico">Doméstico</option>
+        <option value="Empresarial">Empresarial</option>
+    </select>
+</p>
+<p>
+    <label for="estado">Selecione o Estado</label>
+    <select name="estados" id="estados">
+    <option value="Acre">Acre</option>
+    <option value="Alagoas">Alagoas</option>
+    <option value="Amazonas">Amazonas</option>
+    <option value="Bahia">Bahia</option>
+    <option value="Ceará">Ceará</option>
+    <option value="Distrito Federal">Distrito Federal</option>
+    <option value="Espírito Santo">Espírito Santo</option>
+    <option value="Goiás">Goiás</option>
+    <option value="Maranhão">Maranhão</option>
+    <option value="Mato Grosso">Mato Grosso</option>
+    <option value="Mato Grosso do Sul">Mato Grosso do Sul</option>
+    <option value="Minas Gerais">Minas Gerais</option>
+    <option value="Pará">Pará</option>
+    <option value="Paraíba">Paraíba</option>
+    <option value="Paraná">Paraná</option>
+    <option value="Piauí">Piauí</option>
+    <option value="Rio de Janeiro">Rio de Janeiro</option>
+    <option value="Rio Grande do Norte">Rio Grande do Norte</option>
+    <option value="Rio Grande do Sul">Rio Grande do Sul</option>
+    <option value="Rondônia">Rondônia</option>
+    <option value="Roraima">Roraima</option>
+    <option value="Santa Catarina">Santa Catarina</option>
+    <option value="São Paulo">São Paulo</option>
+    <option value="Sergipe">Sergipe</option>
+    <option value="Tocantins">Tocantins</option>
+    </select>
     </p>
-    </form>
-    
-    </div>
-    
-    <script>
-    $("input [name='tipo'] checked").val()
-    // Oculta barra superior
-    $('header').slideUp('fast');
-    
-    // Pré-preenche nome e e-mail de usuário, se logado
-    user = conf.get('user');
-    if(user.email != ''){
-        $('#nome').val(user.name);
-        $('#email').val(user.email);
-    }
-    
-    // Monitorando envio do formulário
-    $(document).on('submit', '#servicos', processaForm);
-    
-    // Monitorando botão fechar box
-    $(document).on('click', '#msgErro > span', closeBox);
-    
-    // Processamento do formulário
-    function processaForm(){
-    
-        // Variável que armazena as mensagens de erro
-        var erro = '';
-    
-        // Variável que contém o feedback do erro
-        var msg = '';
-    
-        // Obtendo os valores dos campos já sanitizados
-        var formNome = sanitiza($('#nome').val());
-        var formEmail = sanitiza($('#email').val());
-        var formDesc = sanitiza($('#desc').val());
-        var formTel = sanitiza($('#tel').val());
-        var formTipo = $("input [name='tipo'] checked").val();
-        var formTitulo = sanitiza($('#titulo').val());
-        var formEstado = sanitiza($('#estado').val());
-        var formUpload1 = sanitiza($('#upload1').val());
-    
-        // Atualizando campos com valores sanitizados
-        $('#nome').val(formNome);
-        $('#email').val(formEmail);
-        $('#desc').val(formDesc);
-        $('#tel').val(formTel);
-        $('#tipo').val(formTipo);
-        $('#titulo').val(formTitulo);
-        $('#estado').val(formEstado);
-        $('#upload1').val(formUpload1);
-    
-    
-        // Validando nome
-        if (formNome.length < 3) {
-            erro += '<li>Seu nome está muito curto.</li>';
-        } else if (!soLetras(formNome)) {
-            erro += '<li>Seu nome tem caracteres inválidos.</li>';
-        }
-        // Validando e-mail
-        if (formEmail.indexOf('@') < 1) {
-            erro += '<li>Seu e-mail não é válido.</li>';
-        } else if (!isMail(formEmail)) {
-            erro += '<li>Seu e-mail não é válido.</li>';
-        }
-    
-        // Validando assunto
-        if (formDesc.length < 5) {
-            erro += '<li>A descrição está muito curta</li>';
-        }
-        
-        // Validando mensagem
-        if (formTel.length < 5) {
-            erro += '<li>O número de telefone não é valido.</li>';
-        }
-    
-        // Se não ocorreram erros...
-        if (erro == '') {
-    
-            // Quebra nome do remetente pelos espaços
-            nome = formNome.split(' ');
-    
-            // Enviando para o Firebase, salvando na coleção 'contatos'
-            $FB.db.collection("servicos").add({
-                data: agoraDb(), // Obtém a data de agora, formatada
-                nome: formNome,
-                email: formEmail,
-                desc: formDesc,
-                telefone: formTel,
-                tipo: formTipo,
-                titulo: formTitulo,
-                estado: formEstado,
-                upload1: formUpload1,
-                status: 'recebido'
-            })
-            .then(function(docRef) { // Se gravou no Firebase
-                msg = `
-    <h3>Olá ${nome[0]}!</h3>
-    <p>Seu anúncio foi cadastrado com sucesso.</p>
-    Obrigado...
-                `;
-                $('#msgFb').html(msg);
-                $('#servicos').hide('fast', function(){
-                    $('#msgFb').show('fast');
-                });        
-            })
-            .catch(function(error) { // Se falhou ao gravar no Firebase
-                msg = `
-    <h3>Ooooops!</h3>
-    <p>Ocorreram erros ao tentar enviar o seu contato:</p>
-    <ul><li>Falha no servidor remoto.</li>
-    <p>A equipe técnica do ShiningHouse já foi avisada da falha.</p>
-    Você pode tentar enviar o formulário novamente, agora ou mais tarde.
-                `;
-                $('#msgErro').html(msg);
-                $('#msgErroBox').show('fast');
-            });        
-    
-        // Se ocorreram erros...	
-        } else {
-            // Exibe os erros na página
-            msg = `
-    <span><i class="fas fa-fw fa-times"></i></span>
-    <h3>Ooops!</h3>
-    <p>Ocorreram erros ao tentar enviar o seu contato:</p>
-    <ul>${erro}</ul>
-    Por favor, corrija os erros e tente novamente.
-    `;
-    
-            $('#msgErro').html(msg);
-            $('#msgErroBox').show('fast');
-        }
-    
-        // De qualquer forma, não faça nada após enviar o formulário
-        return false;
-    }
-    
-    // Fecha caixa de mensagem de erro
-    function closeBox(){
-        $('#msgErroBox').hide('fast');
-    }
-    function readURL(input) {
-	if (input.files && input.files[0]) {
-		var reader = new FileReader();
+<p>
+    <label for="estado">Estado</label>
+    <input type="text" name="estado" id="estado" placeholder="Digite o Estado. Ex: Rio de Janeiro">
+</p>
+<p>
+    <label for="email">E-mail de contato:</label>
+    <input type="text" name="email" id="email" placeholder="Seu e-mail principal.">
+</p>
+<p>
+    <label for="desc">Descrição do serviço:</label>
+    <input type="text" name="desc" id="desc" placeholder="Descreva o seu serviço.">
+</p> 
+<p>
+    <button class="btnDefault" type="submit" name="enviar" id="enviar">Enviar</button>
+</p>
+</form>
 
-		reader.onload = function (e) {
-		$('#foto')
-			.attr('src', e.target.result)
-			.width(100)
-			.height(100);
-		};
-		reader.readAsDataURL(input.files[0]);
-	}
+</div>
+
+<script>
+// Oculta barra superior
+$('header').slideUp('fast');
+
+// Pré-preenche nome e e-mail de usuário, se logado
+user = conf.get('user');
+if(user.email != ''){
+    $('#nome').val(user.name);
+    $('#email').val(user.email);
 }
 
-    </script>
+// Monitorando envio do formulário
+$(document).on('submit', '#servicos', processaForm);
+
+// Monitorando botão fechar box
+$(document).on('click', '#msgErro > span', closeBox);
+
+// Processamento do formulário
+function processaForm(){
+    // Variável que armazena as mensagens de erro
+    var erro = '';
+
+    // Variável que contém o feedback do erro
+    var msg = '';
+
+    // Obtendo os valores dos campos já sanitizados
+    var formNome = sanitiza($('#nome').val());
+    var formEmail = sanitiza($('#email').val());
+    var formDesc = sanitiza($('#desc').val());
+    var formTel = sanitiza($('#tel').val());
+    var formTipo = sanitiza($('#categorias').val());
+    var formTitulo = sanitiza($('#titulo').val());
+    var formEstado = sanitiza($('#estado').val());
+
+    // Atualizando campos com valores sanitizados
+    $('#nome').val(formNome);
+    $('#email').val(formEmail);
+    $('#desc').val(formDesc);
+    $('#tel').val(formTel);
+    $('#categorias').val(formTipo);
+    $('#titulo').val(formTitulo);
+    $('#estado').val(formEstado);
+
+    // Validando nome
+    if (formNome.length < 3) {
+        erro += '<li>Seu nome está muito curto.</li>';
+    } else if (!soLetras(formNome)) {
+        erro += '<li>Seu nome tem caracteres inválidos.</li>';
+    }
+
+    // Validando e-mail
+    if (formEmail.indexOf('@') < 1) {
+        erro += '<li>Seu e-mail não é válido.</li>';
+    } else if (!isMail(formEmail)) {
+        erro += '<li>Seu e-mail não é válido.</li>';
+    }
+
+    // Validando descrição
+    if (formDesc.length < 5) {
+        erro += '<li>A descrição está muito curta</li>';
+    }
+
+    // Validando telefone
+    if (formTel.length < 5) {
+        erro += '<li>O número de telefone não é valido.</li>';
+    }
+
+    // Se não ocorreram erros...
+    if (erro == '') {
+
+        // Quebra nome do remetente pelos espaços
+        nome = formNome.split(' ');
+
+        // Enviando para o Firebase, salvando na coleção 'contatos'
+        db.collection("servicos").add({
+            data: agoraDb(), // Obtém a data de agora, formatada
+            nome: formNome,
+            email: formEmail,
+            desc: formDesc,
+            telefone: formTel,
+            tipo: formTipo,
+            titulo: formTitulo,
+            estado: formEstado,
+            status: 'recebido'
+        }).then(function(docRef) { // Se gravou no Firebase
+            msg = `
+            <h3>Olá ${nome[0]}!</h3>
+            <p>Seu anúncio foi cadastrado com sucesso.</p>
+            Obrigado...
+            `;
+            $('#msgFb').html(msg);
+            $('#servicos').hide('fast', function(){
+                $('#msgFb').show('fast');
+            });        
+        }).catch(function(error) { // Se falhou ao gravar no Firebase
+            msg = `
+            <h3>Ooooops!</h3>
+            <p>Ocorreram erros ao tentar enviar o seu contato:</p>
+            <ul><li>Falha no servidor remoto.</li>
+            <p>A equipe técnica do ShiningHouse já foi avisada da falha.</p>
+            Você pode tentar enviar o formulário novamente, agora ou mais tarde.
+            `;
+            $('#msgErro').html(msg);
+            $('#msgErroBox').show('fast');
+        });
+
+    } else {
+        // Exibe os erros na página
+        msg = `
+        <span><i class="fas fa-fw fa-times"></i></span>
+        <h3>Ooops!</h3>
+        <p>Ocorreram erros ao tentar enviar o seu contato:</p>
+        <ul>${erro}</ul>
+        Por favor, corrija os erros e tente novamente.
+        `;
+
+        $('#msgErro').html(msg);
+        $('#msgErroBox').show('fast');
+    }
+    
+
+    return false;
+}
+
+// Fecha caixa de mensagem de erro
+function closeBox(){
+    $('#msgErroBox').hide('fast');
+}
+</script>

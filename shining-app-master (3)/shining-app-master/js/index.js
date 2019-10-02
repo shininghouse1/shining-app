@@ -22,13 +22,8 @@ var app = {
             options.crossDomain = true;
         });
 
-        // Verifica se tem usuário logado
-        firebase.auth().onAuthStateChanged(function(userData) {
-            if (userData) {
-                user = userData;
-                userIn(user); // Mostra usuário logado no tema
-            }
-        });
+        // Inicializa Firebase
+        conf.fireStart();
 
         // Executa App
         app.run();
@@ -41,6 +36,9 @@ var app = {
         // Aplicar tema pré-configurado
         $('main').attr('class', conf.get('tema'));
 
+        // Monitorando usuário logado
+        userStatus();
+
         // Executa tratamento de eventos
         runApp();
     }
@@ -50,13 +48,13 @@ var app = {
 function runApp(){
 
     // Carregar html/home.html
-    //$.get('html/cadastro.html', function(htmlHome){ /*************************** REMOVER ********************************/
+    //$.get('html/contatos.html', function(htmlHome){ /*************************** REMOVER ********************************/
     $.get('html/home.html', function(htmlHome){
         $('main').html(htmlHome);
     });
 
     // Ocultar Splash Screen 500 milissegundos após iniciar App
-    //$('#splashScreen').hide(0); /*************************** REMOVER ********************************/
+    // $('#splashScreen').hide(0); /*************************** REMOVER ********************************/
     setTimeout(function(){
         $('#splashScreen').fadeOut('slow'); // Oculta com fade
     }, 500);
