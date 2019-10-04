@@ -1,23 +1,26 @@
 <div id="mostraUser"></div>
+
 <script>
         var n = 1;
         var mostra = '';
-        $FB.db.collection("servicos").where("tipo", "==", "Empresarial")
+        db.collection("servicos").where("tipo", "==", "Empresarial")
         .get()
         .then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) {
                 // doc.data() is never undefined for query doc snapshots
                 console.log(doc.id, " => ", n, ') ', doc.data());
-    
                 var u = doc.data();
-    
                 mostra += `
-    <b>${u.nome}</b><br>
-    <li>${u.email}</li>
-    <p>${u.telefone}</p>
-    <hr>
+<div class="card">
+<div class="container">
+    <img src="../img/img_avatar.jpg alt="Avatar" style="width:100%">
+    <h4><strong>${u.titulo}</strong></h4>
+    <b>Nome: ${u.nome}</b><br>
+    <b>Email: ${u.email}</b><br>
+    <b>Telefone de contato: ${u.telefone}</b><br>
+</div>
+</div>
                 `;
-    
                 $('#mostraUser').html(mostra);
                 n ++;
             });

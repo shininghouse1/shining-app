@@ -1,7 +1,5 @@
 <link rel="stylesheet" href="../css/home.css">
-<body>
-    <img >
-</body>
+
 <style>
         .pageWrap .row {
             display: flex;
@@ -40,31 +38,8 @@
             width: 100%;
             height: 3rem;
         }
-        .card {
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-        transition: 0.3s;
-        border-radius: 5px; /* 5px rounded corners */
-        }
-
-        /* Add rounded corners to the top left and the top right corner of the image */
-        img {
-        border-radius: 5px 5px 0 0;
-        }
-
-        /* On mouse-over, add a deeper shadow */
-        .card:hover {
-        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-        }
-
-        /* Add some padding inside the card container */
-        .container {
-        padding: 2px 16px;
-}
-        .container h4 {
-            text-align: center;
-
-        }
         </style>
+        
         <div id="mostraUser"></div>
         
         <script>
@@ -78,16 +53,10 @@
                     console.log(doc.id, " => ", n, ') ', doc.data());
                     var u = doc.data();
                     mostra += `
-<div class="card">
-    <div class="container">
-        <img src="/img/n11.jpg" alt="Avatar" style="width:100%">
-        <h4><strong>${u.titulo}</strong></h4><br>
-        <b>${u.desc}</b></br><br>
-        <b>Email: ${u.email}</b><br>
-        <b>Estado: ${u.estado}</b></br>
-        <b>Telefone de contato: <a href='${u.ddd}${u.telefone}'>(${u.ddd})${u.telefone}</a></b><br>
-    </div>
-</div>
+        <b>${u.nome}</b><br>
+        <li>${u.email}</li>
+        <p>${u.telefone}</p>
+        <hr>
                     `;
                     $('#mostraUser').html(mostra);
                     n ++;

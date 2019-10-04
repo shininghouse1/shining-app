@@ -1,98 +1,9 @@
-<style>
-.pageWrap label {
-    display: block;
-    padding: 0 1rem .2rem .5rem;
-}
-.pageWrap input, .pageWrap textarea, .pageWrap button {
-    font-family: inherit;
-    font-size: inherit;
-    border: 1px solid #ccc;
-    padding: .3rem .5rem;
-    width: 100%;
-    border-radius: .3rem;
-}
-.pageWrap textarea {
-    height: 5rem;
-}
-.pageWrap button {
-    border: 0;
-}
-#msgErroBox, #msgFb {
-    display: none;
-}
-#msgErro {
-    background: #ffff00;
-    color: darkred;
-    font-size: 80%;
-    display: table;
-    margin: auto;
-    margin-top: 1rem;
-    padding: .5rem;
-    border-radius: .3rem;
-}
-#msgErro > span {
-    display: block;
-    float: right;
-    cursor: pointer;
-    border: 1px solid grey;
-    border-radius: .2rem;
-    background: #fff;
-}
-#msgErro > span:hover {
-    background: red;
-    color: #fff;
-}
-#msgErro > h3 {
-    margin: 0;
-}
-</style>
-
-<h2>
-    <a href="#home"><i class="fas fa-fw fa-arrow-left"></i></a>
-    <span>Faça Contato</span>    
-</h2>
-<div class="pageWrap">
-
-<div id="msgFb"></div>
-
-<form action="#contatos" method="post" id="contatos">
-    Preencha o formulário abaixo para entrar em contato com a equipe do 'Shining House'.
-
-<div id="msgErroBox">
-    <div id="msgErro"></div>
-</div>
-
-<p>
-    <label for="nome">Nome:</label>
-    <input type="text" name="nome" id="nome" placeholder="Seu nome completo.">
-</p>
-<p>
-    <label for="email">E-mail:</label>
-    <input type="text" name="email" id="email" placeholder="Seu e-mail principal.">
-</p>
-<p>
-    <label for="assunto">Assunto:</label>
-    <input type="text" name="assunto" id="assunto" placeholder="Assunto do seu contato.">
-</p>
-<p>
-    <label for="mensagem">Mensagem:</label>
-    <textarea name="mensagem" id="mensagem" placeholder="Sua mensagem."></textarea>
-</p>
-<p>
-    <button class="btnDefault" type="submit" name="enviar" id="enviar">Enviar</button>
-</p>
-</form>
-
-</div>
-
-<script>
 // Oculta barra superior
 $('header').slideUp('fast');
 
 // Pré-preenche nome e e-mail de usuário, se logado
-user = conf.get('user');
-if(user.email != ''){
-    $('#nome').val(user.name);
+if(user !== undefined){
+    $('#nome').val(user.displayName);
     $('#email').val(user.email);
 }
 
@@ -154,7 +65,7 @@ function processaForm(){
         nome = formNome.split(' ');
 
         // Enviando para o Firebase, salvando na coleção 'contatos'
-        $FB.db.collection("contatos").add({
+        db.collection("contatos").add({
             data: agoraDb(), // Obtém a data de agora, formatada
             nome: formNome,
             email: formEmail,
@@ -208,5 +119,3 @@ Por favor, corrija os erros e tente novamente.
 function closeBox(){
     $('#msgErroBox').hide('fast');
 }
-
-</script>
