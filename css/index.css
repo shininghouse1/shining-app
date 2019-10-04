@@ -5,7 +5,7 @@
     --font-face-default:'Karma', serif; /* Fonte padrão do app */
     --font-size-default: 16px; /* Tamanho da fonte não menor 12px */
     --font-color: #444; /* Cor dos textos */
-    --body-bg: url('../img/backrground03.jpg') fixed #ddd; /* Imagem ou cor de fundo */
+    --body-bg: #d9d9d9; /* Imagem ou cor de fundo */
     --link-color: rgb(70, 130, 180); /* Cor padrão dos links */
     --link-color-hover: rgb(255, 69, 0); /* Cor dos links com 'hover' */
     --header-bg:  #286DA8;  /* Cor do fundo do cabeçalho */
